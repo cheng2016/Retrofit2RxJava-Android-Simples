@@ -40,5 +40,6 @@ dependencies {
 
     compile 'com.jakewharton.timber:timber:4.1.0'
     compile 'org.greenrobot:eventbus:3.0.0'
+    compile 'com.jakewharton:butterknife:7.0.1'
     compile project(':lib')
 }

@@ -19,16 +19,10 @@ public abstract class BaseActivity extends AppCompatActivity{
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initView();
-        initData();
-        initEvent();
+        init();
     }
 
-    public abstract void initView();
-
-    public abstract void initData();
-
-    public abstract void initEvent();
+    public abstract void init();
 
     @Subscribe
     public  void onEventMainThread(Object event){

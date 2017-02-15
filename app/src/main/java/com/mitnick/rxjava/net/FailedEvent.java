@@ -1,5 +1,6 @@
 package com.mitnick.rxjava.net;
 
+
 public class FailedEvent {
 	private int type;
 	private int arg0, arg1;

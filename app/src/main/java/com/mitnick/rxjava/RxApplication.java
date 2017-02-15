@@ -8,7 +8,7 @@ import com.mitnick.util.L;
 import rx.subscriptions.CompositeSubscription;
 
 /**
- * Created by Michael Smith on 2016/7/21.
+ * Created by mitnick.cheng on 2016/7/21.
  */
 
 public class RxApplication extends Application {

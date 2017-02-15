@@ -9,7 +9,7 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 /**
- * Created by Michael Smith on 2016/7/24.
+ * Created by mitnick.cheng on 2016/7/24.
  */
 
 public abstract class BaseActivity extends AppCompatActivity{
@@ -22,11 +22,11 @@ public abstract class BaseActivity extends AppCompatActivity{
         init();
     }
 
+    //模板模式，充当钩子
     public abstract void init();
 
     @Subscribe
     public  void onEventMainThread(Object event){
-//        MessageType.handlerNetWorkException(this,event);
     };
 
     @Override

@@ -21,7 +21,7 @@ import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
- * Created by Michael Smith on 2016/7/21.
+ * Created by mitnick.cheng on 2016/7/21.
  */
 
 public class HttpFactory {

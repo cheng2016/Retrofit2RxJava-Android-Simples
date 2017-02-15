@@ -20,7 +20,7 @@ import rx.schedulers.Schedulers;
 
 
 /**
- * Created by Michael Smith on 2016/7/24.
+ * Created by mitnick.cheng on 2016/7/24.
  */
 
 public class HttpImpl {

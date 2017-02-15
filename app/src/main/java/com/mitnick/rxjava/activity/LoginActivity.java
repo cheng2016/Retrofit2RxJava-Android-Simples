@@ -74,18 +74,15 @@ public class LoginActivity extends BaseActivity {
         }
         if (event instanceof FailedEvent) {
             int type = ((FailedEvent) event).getType();
-            String message = ((FailedEvent) event).getObject() != null ?
-                    (((Throwable) ((FailedEvent) event).getObject()).getMessage().indexOf("504") != -1 ? "请检查网络设置..." : ((Throwable) ((FailedEvent) event).getObject()).getMessage())
-                    : "";
             switch (type) {
                 case MessageType.LOGIN:
-                    Toast.makeText(this, "登录失败！" + message, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "登录失败！", Toast.LENGTH_SHORT).show();
                     break;
                 case MessageType.PROFILE:
-                    Toast.makeText(this, "获取用户信息失败！" + message, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "获取用户信息失败！", Toast.LENGTH_SHORT).show();
                     break;
                 default:
-                    Toast.makeText(this, "应用程序异常！" + message, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "应用程序异常！", Toast.LENGTH_SHORT).show();
             }
         }
     }

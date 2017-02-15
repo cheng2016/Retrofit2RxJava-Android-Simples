@@ -77,7 +77,7 @@ public class HttpImpl {
                             @Override
                             public void onError(Throwable throwable) {
                                 L.e(TAG , "login 请求失败！" + throwable.toString());
-                                postEvent(new FailedEvent(MessageType.LOGIN, throwable));
+                                postEvent(new FailedEvent(MessageType.LOGIN));
                             }
 
                             @Override
@@ -104,7 +104,7 @@ public class HttpImpl {
             @Override
             public void onFailure(Call<Profile> call, Throwable throwable) {
                 L.e(TAG , "getProfiles 请求失败！" + throwable.toString());
-                postEvent(new FailedEvent(MessageType.PROFILE, throwable));
+                postEvent(new FailedEvent(MessageType.PROFILE));
             }
         });
     }
@@ -123,7 +123,7 @@ public class HttpImpl {
                             @Override
                             public void onError(Throwable throwable) {
                                 L.e(TAG , "getProfile 请求失败！" + throwable.toString());
-                                postEvent(new FailedEvent(MessageType.PROFILE, throwable));
+                                postEvent(new FailedEvent(MessageType.PROFILE));
                             }
 
                             @Override
@@ -141,15 +141,15 @@ public class HttpImpl {
                 if (response.isSuccessful()) {
                     postEvent(response.body());
                 } else {
-                    postEvent(new FailedEvent(MessageType.REFRESH));
                     L.e(TAG,"refresh 请求失败！" +  response.code());
+                    postEvent(new FailedEvent(MessageType.REFRESH));
                 }
             }
 
             @Override
             public void onFailure(Call<Token> call, Throwable throwable) {
                 L.e(TAG,"refresh 请求失败！" + throwable.toString());
-                postEvent(new FailedEvent(MessageType.REFRESH, throwable));
+                postEvent(new FailedEvent(MessageType.REFRESH));
             }
         });
     }
@@ -175,7 +175,7 @@ public class HttpImpl {
                     @Override
                     public void onError(Throwable throwable) {
                         L.e(TAG,"loginAndGetProfile 请求失败！" + throwable.toString());
-                        postEvent(new FailedEvent(MessageType.PROFILE, throwable));
+                        postEvent(new FailedEvent(MessageType.PROFILE));
                     }
 
                     @Override

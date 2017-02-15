@@ -2,13 +2,13 @@ package com.mitnick.rxjava.lnterface;
 
 /**
  * Created by Michael Smith on 2016/7/24.
- * 观察者
+ * 观察者(观众)
  */
 
 public interface Observer {
-    public void register(Observable observable);
+    public void register(Subject subject);
 
-    public void unregister(Observable observable);
+    public void unregister(Subject subject);
 
     public void notifyData();
 }

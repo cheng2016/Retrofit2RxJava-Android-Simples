@@ -1,6 +1,5 @@
 package com.mitnick.rxjava.net;
 
-import android.content.Context;
 import android.util.Log;
 import org.greenrobot.eventbus.EventBus;
 
@@ -18,7 +17,6 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
-import rx.subscriptions.CompositeSubscription;
 
 
 /**
@@ -29,16 +27,16 @@ public class HttpImpl {
     private final static String TAG = "HttpImpl";
 
     static volatile HttpImpl sInstance;
-    static volatile ServiceApi mApiClient;
+    static volatile Http mApiClient;
 
     public HttpImpl() {
     }
 
-    public ServiceApi getApiClient() {
+    public Http getApiClient() {
         if (mApiClient == null) {
             synchronized (this) {
-                L.i(TAG, "ServiceApi.newInstance() excute ");
-                mApiClient = ServiceFactory.createRetrofit2RxJavaService(ServiceApi.class);
+                L.i(TAG, "Http.newInstance() excute ");
+                mApiClient = HttpFactory.createRetrofit2RxJavaService(Http.class);
             }
         }
         return mApiClient;

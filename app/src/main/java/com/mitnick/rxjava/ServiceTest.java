@@ -9,7 +9,7 @@ public class ServiceTest {
 /*        String auth = "Basic dG1qMDAxOjEyMzQ1Ng==";
 
         CompositeSubscription mSubscriptions = new CompositeSubscription();
-        ServiceApi mApiClient = ServiceFactory.createRetrofitService(ServiceApi.class);
+        Http mApiClient = HttpFactory.createRetrofitService(Http.class);
 
         mSubscriptions.add(mApiClient.login(auth)
                 .subscribeOn(Schedulers.newThread())

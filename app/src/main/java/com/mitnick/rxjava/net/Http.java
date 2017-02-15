@@ -14,7 +14,7 @@ import rx.Observable;
  * Created by Michael Smith on 2016/7/21.
  */
 
-public interface ServiceApi {
+public interface Http {
     public static final String baseurl = "https://witmj.azurewebsites.net/api/";
 
     @POST("login")
@@ -28,6 +28,4 @@ public interface ServiceApi {
 
     @GET("users/profile/")
     Call<Profile> getProfiles(@Header("X-ZUMO-AUTH") String accessToken);
-
-    
 }

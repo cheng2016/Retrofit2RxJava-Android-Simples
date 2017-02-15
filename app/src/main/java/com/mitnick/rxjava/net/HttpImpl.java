@@ -29,7 +29,7 @@ public class HttpImpl {
     static volatile HttpImpl sInstance;
     static volatile Http mApiClient;
 
-    public HttpImpl() {
+    private HttpImpl() {
     }
 
     public Http getApiClient() {

@@ -72,7 +72,7 @@ Retrofit2 + Rxjava +Cache 机制+EventBus，新增Token失效处理方案，mobi
        }
     }
     
-###Unsupported major.minor version 52.0 问题解决方案
+### Unsupported major.minor version 52.0 问题解决方案
 
 http://stackoverflow.com/questions/36008207/how-to-run-android-code-in-eclipse
 
@@ -86,7 +86,7 @@ And in this file add this line : sdk.buildtools=23.0.2
 http://blog.csdn.net/cxc19890214/article/details/47430547
 
 
-###推荐书籍
+### 推荐书籍
 
 Think in java
 
@@ -95,7 +95,7 @@ Effective java
 Clean code
 
 
-###参考
+### 参考
 
 https://github.com/cheng2016/RxJava-Android-Samples
 

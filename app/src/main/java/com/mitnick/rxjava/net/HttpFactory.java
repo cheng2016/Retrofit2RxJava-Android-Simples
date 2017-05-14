@@ -32,6 +32,7 @@ public class HttpFactory {
 
     public static <T> T createRetrofit2Service(final Class<T> service) {
         Retrofit retrofit = new Retrofit.Builder()
+                .client(getCacheOkHttpClient())
                 .addConverterFactory(GsonConverterFactory.create())
                 .baseUrl(Http.baseurl)
                 .build();

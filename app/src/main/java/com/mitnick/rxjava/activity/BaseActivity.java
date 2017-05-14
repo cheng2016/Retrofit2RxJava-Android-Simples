@@ -1,12 +1,15 @@
 package com.mitnick.rxjava.activity;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
+
+import butterknife.ButterKnife;
 
 /**
  * Created by mitnick.cheng on 2016/7/24.
@@ -16,14 +19,20 @@ public abstract class BaseActivity extends AppCompatActivity{
     protected final static String TAG = "BaseActivity";
     private ProgressDialog mProgressDialog;
 
+    protected Context context;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        init();
+        setContentView(getRootViewId());
+        context = this;
+        initUI();
     }
 
     //模板模式，充当钩子
-    public abstract void init();
+    protected abstract void initUI();
+
+    protected abstract int getRootViewId();
 
     @Subscribe
     public  void onEventMainThread(Object event){

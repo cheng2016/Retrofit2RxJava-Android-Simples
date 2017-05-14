@@ -39,13 +39,16 @@ public class LoginActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
     }
 
     @Override
-    public void init() {
+    public void initUI() {
+    }
+
+    @Override
+    protected int getRootViewId() {
+        return R.layout.activity_login;
     }
 
     //activity_login.xml 中onClick方法

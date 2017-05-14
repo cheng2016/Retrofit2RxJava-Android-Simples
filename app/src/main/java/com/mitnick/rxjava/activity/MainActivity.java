@@ -1,6 +1,7 @@
 package com.mitnick.rxjava.activity;
 
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Button;
@@ -16,6 +17,11 @@ import com.mitnick.rxjava.net.HttpImpl;
 import com.mitnick.rxjava.net.MessageType;
 import com.mitnick.util.PreferenceConstants;
 import com.mitnick.util.PreferenceUtils;
+import com.mitnick.util.T;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -33,10 +39,11 @@ public class MainActivity extends BaseActivity {
     //    private String mAuth = "Basic dG1qMDAxOjEyMzQ1Ng==";
     private String mAccessToken = "";
 
+    private boolean isExit;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         if (getIntent().getExtras() != null) {
             mAccessToken = getIntent().getExtras().getString("accessToken", "");
@@ -47,9 +54,19 @@ public class MainActivity extends BaseActivity {
     }
 
     @Override
-    public void init() {
+    public void initUI() {
     }
 
+    @Override
+    protected int getRootViewId() {
+        return R.layout.activity_main;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        isExit = false;
+    }
 
     @Override
     public void onEventMainThread(Object event) {
@@ -101,5 +118,22 @@ public class MainActivity extends BaseActivity {
                 HttpImpl.getInstance().refresh(refreshToken);
                 break;
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(!isExit){
+            T.showShort(context,R.string.press_again_to_exit);
+            isExit = true;
+            EventBus.getDefault().post(isExit);
+        }else{
+            super.onBackPressed();
+        }
+    }
+
+    @Subscribe(threadMode = ThreadMode.ASYNC)
+    public void onEventExit(Boolean isBool){
+        SystemClock.sleep(1000);
+        isExit = false;
     }
 }

@@ -17,9 +17,9 @@ Retrofit2 + Rxjava +Cache 机制+EventBus，新增Token失效处理方案，mobi
                         .cacheControl(CacheControl.FORCE_CACHE)
                         .build();
             }
-
+    
             Response originalResponse = chain.proceed(request);
-
+    
             switch (netWorkState) {
                 case NetUtils.NETWORN_MOBILE://mobile network 情况下缓存一分钟
                     int maxAge = 60;
@@ -28,7 +28,7 @@ Retrofit2 + Rxjava +Cache 机制+EventBus，新增Token失效处理方案，mobi
                             .removeHeader("Cache-Control")
                             .header("Cache-Control", "public, max-age=" + maxAge)
                             .build();
-
+    
                 case NetUtils.NETWORN_WIFI://wifi network 情况下不使用缓存
                     maxAge = 0;
                     return originalResponse.newBuilder()
@@ -36,7 +36,7 @@ Retrofit2 + Rxjava +Cache 机制+EventBus，新增Token失效处理方案，mobi
                             .removeHeader("Cache-Control")
                             .header("Cache-Control", "public, max-age=" + maxAge)
                             .build();
-
+    
                 case NetUtils.NETWORN_NONE://none network 情况下离线缓存4周
                     int maxStale = 60 * 60 * 24 * 4 * 7;
                     return originalResponse.newBuilder()
@@ -61,17 +61,17 @@ Retrofit2 + Rxjava +Cache 机制+EventBus，新增Token失效处理方案，mobi
           // 通过一个特定的接口获取新的token，此处要用到同步的retrofit请求
           ServiceApi service = ServiceFactory.createRetrofit2(ServiceApi.class);
           Call<Token> call = service.refresh(refreshRequest);
-
+    
          //要用retrofit的同步方式
           Token token = call.execute().body();
           PreferenceUtils.setPrefString(RxApplication.getInstance(),"refreshToken",token.getRefresh_token());
-
+    
           return response.request().newBuilder()
                   .header("X-ZUMO-AUTH", token.getAccess_token())
                   .build();
        }
     }
-    
+
 ### Unsupported major.minor version 52.0 问题解决方案
 
 http://stackoverflow.com/questions/36008207/how-to-run-android-code-in-eclipse
@@ -100,3 +100,9 @@ Clean code
 https://github.com/cheng2016/RxJava-Android-Samples
 
 https://github.com/cheng2016/RxJava
+
+### Contact Me
+
+- Github: github.com/cheng2016
+- Email: mitnick.cheng@outlook.com
+- QQ: 1102743539

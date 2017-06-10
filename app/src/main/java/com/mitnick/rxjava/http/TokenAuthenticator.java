@@ -3,11 +3,10 @@ package com.mitnick.rxjava.http;
 import com.mitnick.rxjava.RxApplication;
 import com.mitnick.rxjava.http.bean.RefreshRequest;
 import com.mitnick.rxjava.http.bean.Token;
-import com.mitnick.util.PreferenceConstants;
-import com.mitnick.util.PreferenceUtils;
+import com.mitnick.rxjava.util.PreferenceConstants;
+import com.mitnick.rxjava.util.PreferenceUtils;
 
 import java.io.IOException;
-
 import okhttp3.Authenticator;
 import okhttp3.Request;
 import okhttp3.Response;

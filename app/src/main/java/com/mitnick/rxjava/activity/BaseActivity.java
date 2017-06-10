@@ -24,8 +24,6 @@ public abstract class BaseActivity extends AppCompatActivity{
 
     protected Context context;
 
-    protected CompositeSubscription mCompositeSubscription;
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,10 +56,6 @@ public abstract class BaseActivity extends AppCompatActivity{
         RxJavaManager.getRxInstance().unregist(this);
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-    }
 
     public void showProgressDialog(String message) {
         if(mProgressDialog == null){

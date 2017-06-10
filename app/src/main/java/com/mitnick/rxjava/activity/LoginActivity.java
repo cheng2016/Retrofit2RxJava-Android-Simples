@@ -9,13 +9,13 @@ import android.widget.Toast;
 
 import com.mitnick.rxjava.R;
 import com.mitnick.rxjava.RxApplication;
-import com.mitnick.rxjava.bean.Profile;
-import com.mitnick.rxjava.bean.Token;
-import com.mitnick.rxjava.net.FailedEvent;
-import com.mitnick.rxjava.net.HttpImpl;
-import com.mitnick.rxjava.net.MessageType;
-import com.mitnick.util.PreferenceConstants;
-import com.mitnick.util.PreferenceUtils;
+import com.mitnick.rxjava.http.bean.Profile;
+import com.mitnick.rxjava.http.bean.Token;
+import com.mitnick.rxjava.http.FailedEvent;
+import com.mitnick.rxjava.http.HttpImpl;
+import com.mitnick.rxjava.http.MessageType;
+import com.mitnick.rxjava.util.PreferenceConstants;
+import com.mitnick.rxjava.util.PreferenceUtils;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;

@@ -1,4 +1,4 @@
-package com.mitnick.rxjava.net;
+package com.mitnick.rxjava.http;
 
 
 public class FailedEvent {

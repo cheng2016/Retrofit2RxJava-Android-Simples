@@ -1,4 +1,4 @@
-package com.mitnick.rxjava.lnterface;
+package com.mitnick.rxjava.util.design;
 
 /**
  * Created by mitnick.cheng on 2016/7/29.

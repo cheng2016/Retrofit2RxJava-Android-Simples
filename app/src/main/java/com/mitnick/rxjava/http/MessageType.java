@@ -1,10 +1,7 @@
-package com.mitnick.rxjava.net;
+package com.mitnick.rxjava.http;
 
 import android.content.Context;
 import android.widget.Toast;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by mitnick.cheng on 2016/7/29.

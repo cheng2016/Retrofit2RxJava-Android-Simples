@@ -1,22 +1,29 @@
-package com.mitnick.rxjava.net;
+package com.mitnick.rxjava.http;
 
+import android.app.Activity;
 import android.util.Log;
 import org.greenrobot.eventbus.EventBus;
 
 import com.google.gson.Gson;
-import com.mitnick.rxjava.bean.Profile;
-import com.mitnick.rxjava.bean.RefreshRequest;
-import com.mitnick.rxjava.bean.Token;
-import com.mitnick.util.L;
+import com.mitnick.rxjava.http.bean.Profile;
+import com.mitnick.rxjava.http.bean.RefreshRequest;
+import com.mitnick.rxjava.http.bean.Token;
+import com.mitnick.rxjava.util.L;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import rx.Observable;
 import rx.Observer;
+import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
+import rx.subscriptions.CompositeSubscription;
 
 
 /**
@@ -28,6 +35,7 @@ public class HttpImpl {
 
     static volatile HttpImpl sInstance;
     static volatile Http mApiClient;
+
 
     private HttpImpl() {
     }
@@ -57,8 +65,8 @@ public class HttpImpl {
         EventBus.getDefault().post(object);
     }
 
-    public void login(String auth) {
-        getApiClient().login(auth)
+    public  void login(String auth) {
+        Subscription subscription =  getApiClient().login(auth)
                         .doOnNext(new Action1<Token>(){//该方法执行请求成功后的耗时操作，比如数据库读写
                             @Override
                             public void call(Token token) {
@@ -86,6 +94,8 @@ public class HttpImpl {
                                 postEvent(token);
                             }
                         });
+        RxJavaManager.getRxInstance().getCompositeSubscription().add(subscription);
+
     }
 
     public void getProfiles(String accessToken) {
@@ -110,7 +120,7 @@ public class HttpImpl {
     }
 
     public void getProfile(String accessToken) {
-        getApiClient().getProfile(accessToken)
+        Subscription subscription = getApiClient().getProfile(accessToken)
         //               .debounce(400, TimeUnit.MILLISECONDS)//限制400毫秒的频繁http操作
                         .subscribeOn(Schedulers.newThread())
                         .observeOn(AndroidSchedulers.mainThread())
@@ -131,6 +141,7 @@ public class HttpImpl {
                                 postEvent(profile);
                             }
                         });
+        RxJavaManager.getRxInstance().getCompositeSubscription().add(subscription);
     }
 
     public void refresh(String refreshToken) {
@@ -156,7 +167,7 @@ public class HttpImpl {
 
     //先登录，然后马上请求信息，连续请求2次网络请求
     public void loginAndGetProfile(String auth){
-        getApiClient().login(auth)
+        Subscription subscription =   getApiClient().login(auth)
                 .flatMap(new Func1<Token, Observable<Profile>>() {
                     @Override
                     public Observable<Profile> call(Token token) {
@@ -184,5 +195,6 @@ public class HttpImpl {
                         postEvent(profile);
                     }
                 });
+        RxJavaManager.getRxInstance().getCompositeSubscription().add(subscription);
     }
 }

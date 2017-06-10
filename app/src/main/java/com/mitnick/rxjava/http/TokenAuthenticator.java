@@ -1,8 +1,8 @@
-package com.mitnick.rxjava.net;
+package com.mitnick.rxjava.http;
 
 import com.mitnick.rxjava.RxApplication;
-import com.mitnick.rxjava.bean.RefreshRequest;
-import com.mitnick.rxjava.bean.Token;
+import com.mitnick.rxjava.http.bean.RefreshRequest;
+import com.mitnick.rxjava.http.bean.Token;
 import com.mitnick.util.PreferenceConstants;
 import com.mitnick.util.PreferenceUtils;
 

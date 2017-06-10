@@ -1,7 +1,5 @@
 package com.mitnick.rxjava;
 
-import com.mitnick.rxjava.net.HttpImpl;
-
 import org.junit.Test;
 
 import static org.junit.Assert.*;

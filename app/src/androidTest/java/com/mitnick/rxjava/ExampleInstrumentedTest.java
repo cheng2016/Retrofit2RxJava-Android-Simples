@@ -5,9 +5,6 @@ import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
 import android.util.Log;
 
-import com.mitnick.rxjava.net.HttpImpl;
-import com.mitnick.util.T;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 

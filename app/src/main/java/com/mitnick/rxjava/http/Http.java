@@ -1,8 +1,8 @@
-package com.mitnick.rxjava.net;
+package com.mitnick.rxjava.http;
 
-import com.mitnick.rxjava.bean.Profile;
-import com.mitnick.rxjava.bean.RefreshRequest;
-import com.mitnick.rxjava.bean.Token;
+import com.mitnick.rxjava.http.bean.Profile;
+import com.mitnick.rxjava.http.bean.RefreshRequest;
+import com.mitnick.rxjava.http.bean.Token;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;

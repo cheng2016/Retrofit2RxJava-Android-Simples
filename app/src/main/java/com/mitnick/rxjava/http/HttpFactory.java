@@ -1,4 +1,4 @@
-package com.mitnick.rxjava.net;
+package com.mitnick.rxjava.http;
 
 import android.util.Log;
 
@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import com.mitnick.rxjava.RxApplication;
-import com.mitnick.util.NetUtils;
+import com.mitnick.rxjava.util.NetUtils;
 
 import okhttp3.Cache;
 import okhttp3.CacheControl;

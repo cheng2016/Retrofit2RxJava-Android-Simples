@@ -1,9 +1,10 @@
 package com.mitnick.rxjava;
 
 import android.app.Application;
+import android.content.Context;
 
-import com.mitnick.util.AppUtils;
-import com.mitnick.util.L;
+import com.mitnick.rxjava.util.AppUtils;
+import com.mitnick.rxjava.util.L;
 
 import rx.subscriptions.CompositeSubscription;
 
@@ -15,7 +16,7 @@ public class RxApplication extends Application {
 
     private static RxApplication sInstance;
 
-    private static final String DEBUG_MODE = "debugMode";
+    public static String DEBUG_MODE = "debugMode";
 
     @Override
     public void onCreate() {

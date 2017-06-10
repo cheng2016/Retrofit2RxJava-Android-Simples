@@ -1,4 +1,4 @@
-package com.mitnick.rxjava.bean;
+package com.mitnick.rxjava.http.bean;
 
 /**
  * Created by WH1604025 on 2016/6/3.

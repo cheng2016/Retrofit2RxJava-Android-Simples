@@ -1,4 +1,4 @@
-package com.mitnick.rxjava.bean;
+package com.mitnick.rxjava.http.bean;
 
 import com.google.gson.annotations.SerializedName;
 

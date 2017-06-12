@@ -43,6 +43,24 @@ public void onEventMainThread(Object event) {
 
 
 
+### RxJava生命周期管理
+
+```
+@Override
+protected void onResume() {
+    super.onResume();
+    RxJavaManager.getRxInstance().regist(this);
+}
+
+@Override
+protected void onPause() {
+    super.onPause();
+    RxJavaManager.getRxInstance().unregist(this);
+}
+```
+
+
+
 ### 网络缓存机制
 
       private final static Interceptor REWRITE_CACHE_CONTROL_INTERCEPTOR = new Interceptor() {

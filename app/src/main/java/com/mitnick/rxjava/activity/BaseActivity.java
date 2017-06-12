@@ -42,7 +42,6 @@ public abstract class BaseActivity extends AppCompatActivity{
     protected void onStart() {
         super.onStart();
         EventBus.getDefault().register(this);
-
     }
 
     @Override

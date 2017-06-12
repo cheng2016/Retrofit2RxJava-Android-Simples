@@ -7,6 +7,9 @@ public class Token {
     private String access_token;
     private String refresh_token;
 
+    public Token() {
+    }
+
     public String getAccess_token() {
         return access_token;
     }

@@ -43,7 +43,6 @@ public class HttpImpl {
     public Http getApiClient() {
         if (mApiClient == null) {
             synchronized (this) {
-                L.i(TAG, "Http.newInstance() excute ");
                 mApiClient = HttpFactory.createRetrofit2RxJavaService(Http.class);
             }
         }
@@ -54,7 +53,6 @@ public class HttpImpl {
     public static HttpImpl getInstance() {
         if (sInstance == null) {
             synchronized (HttpImpl.class) {
-                L.i(TAG, "HttpImpl.newInstance() excute ");
                 sInstance = new HttpImpl();
             }
         }

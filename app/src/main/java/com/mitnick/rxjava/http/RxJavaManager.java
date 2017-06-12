@@ -1,11 +1,10 @@
 package com.mitnick.rxjava.http;
 
-import android.app.Activity;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Stack;
-
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Map.Entry;
 import rx.subscriptions.CompositeSubscription;
 
 /**
@@ -15,10 +14,13 @@ import rx.subscriptions.CompositeSubscription;
 public class RxJavaManager {
     private static RxJavaManager rxInstance;
 
-    private Stack<RxJavaMethod> list = new Stack<RxJavaMethod>();
+    private Map<Object,CompositeSubscription> map = new LinkedHashMap<>();
+
+    public Map<Object, CompositeSubscription> getMap() {
+        return map;
+    }
 
     private RxJavaManager() {
-
     }
 
     public static RxJavaManager getRxInstance(){
@@ -33,27 +35,30 @@ public class RxJavaManager {
     }
 
 
-    public void regist(Object obj){
-        Class<?> subscriberClass = obj.getClass();
-        RxJavaMethod rxJavaMethod = new RxJavaMethod(subscriberClass,new CompositeSubscription());
-        list.push(rxJavaMethod);
+    public void regist(Object subscriber){
+        map.put(subscriber,new CompositeSubscription());
     }
 
-    public void unregist(Object obj){
-        for (RxJavaMethod rx:list) {
-            if(rx.activity.getClass() == obj.getClass()){
-                if(rx.compositeSubscription.hasSubscriptions()){
-                    rx.compositeSubscription.unsubscribe();
-                }
-                list.remove(rx);
-                break;
-            }
-        }
+    public void unregist(Object subscriber){
+        CompositeSubscription compositeSubscription = map.get(subscriber);
+        compositeSubscription.clear();
+        map.remove(subscriber);
     }
 
     public CompositeSubscription getCompositeSubscription(){
-        CompositeSubscription c = list.firstElement().compositeSubscription;
+        CompositeSubscription c = getTail().getValue();
+        if(c.hasSubscriptions()){
+            c.clear();
+        }
         return c;
     }
 
+    public Entry<Object, CompositeSubscription> getTail (){
+        Iterator<Entry<Object, CompositeSubscription>> iterator = map.entrySet().iterator();
+        Entry<Object, CompositeSubscription> tail = null;
+        while (iterator.hasNext()) {
+            tail = iterator.next();
+        }
+        return tail;
+    }
 }

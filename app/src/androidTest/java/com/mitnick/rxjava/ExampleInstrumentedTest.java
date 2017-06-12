@@ -22,7 +22,7 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-//        assertEquals("com.mitnick..rxjava", appContext.getPackageName());
+        assertEquals("com.mitnick..rxjava", appContext.getPackageName());
 
 //        HttpImpl.getInstance().login("Basic dG1qMDAxOjEyMzQ1Ng==");
 //        T.showShort(appContext,"fucking");

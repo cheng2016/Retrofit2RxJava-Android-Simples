@@ -6,6 +6,9 @@ package com.mitnick.rxjava.http.bean;
 public class RefreshRequest {
     private String refresh_token;
 
+    public RefreshRequest() {
+    }
+
     public RefreshRequest(String refresh_token) {
         this.refresh_token = refresh_token;
     }

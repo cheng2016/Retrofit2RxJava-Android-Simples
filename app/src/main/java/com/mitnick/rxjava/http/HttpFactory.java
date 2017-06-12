@@ -49,6 +49,16 @@ public class HttpFactory {
         return retrofit.create(service);
     }
 
+    public static <T> T createSimpleRetrofit2Service(final Class<T> service) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .client(getSimpleOkHttpClient())
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .baseUrl(Http.baseurl)
+                .build();
+        return retrofit.create(service);
+    }
+
     private static OkHttpClient getCacheOkHttpClient() {
         //设置缓存路径
         final File httpCacheDirectory = new File(RxApplication.getInstance().getCacheDir(), "okhttpCache");
@@ -67,6 +77,18 @@ public class HttpFactory {
                 .addInterceptor(REWRITE_CACHE_CONTROL_INTERCEPTOR)
                 .cache(cache)
                 .authenticator(new TokenAuthenticator())
+                .build();
+    }
+
+    public static OkHttpClient getSimpleOkHttpClient() {
+        return new OkHttpClient.Builder()
+                .writeTimeout(30 * 1000, TimeUnit.MILLISECONDS)
+                .readTimeout(20 * 1000, TimeUnit.MILLISECONDS)
+                .connectTimeout(15 * 1000, TimeUnit.MILLISECONDS)
+                //设置拦截器，显示日志信息
+                .addInterceptor(httpLoggingInterceptor)
+                .addNetworkInterceptor(REWRITE_CACHE_CONTROL_INTERCEPTOR)
+                .addInterceptor(REWRITE_CACHE_CONTROL_INTERCEPTOR)
                 .build();
     }
 

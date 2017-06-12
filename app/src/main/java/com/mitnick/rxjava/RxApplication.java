@@ -1,12 +1,9 @@
 package com.mitnick.rxjava;
 
 import android.app.Application;
-import android.content.Context;
-
 import com.mitnick.rxjava.util.AppUtils;
 import com.mitnick.rxjava.util.L;
 
-import rx.subscriptions.CompositeSubscription;
 
 /**
  * Created by mitnick.cheng on 2016/7/21.

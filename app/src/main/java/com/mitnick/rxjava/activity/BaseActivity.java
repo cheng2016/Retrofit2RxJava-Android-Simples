@@ -5,14 +5,10 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-
-import com.mitnick.rxjava.http.HttpImpl;
 import com.mitnick.rxjava.http.RxJavaManager;
-
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
-import rx.subscriptions.CompositeSubscription;
 
 /**
  * Created by mitnick.cheng on 2016/7/24.
@@ -46,14 +42,25 @@ public abstract class BaseActivity extends AppCompatActivity{
     protected void onStart() {
         super.onStart();
         EventBus.getDefault().register(this);
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         RxJavaManager.getRxInstance().regist(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        RxJavaManager.getRxInstance().unregist(this);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
         EventBus.getDefault().unregister(this);
-        RxJavaManager.getRxInstance().unregist(this);
     }
 
 

@@ -3,6 +3,46 @@ Retrofit2 + Rxjava +Cache 机制+EventBus，新增Token失效处理方案，mobi
 
 ![](screenshot/2016-08-09-14-24-52.png)   ![](screenshot/2016-08-09-14-26-52.png)
 
+
+
+### Http解耦
+
+> **请求**
+
+```
+HttpImpl.getInstance().getProfiles(mAccessToken);
+```
+
+> **处理**
+
+```
+@Override
+public void onEventMainThread(Object event) {
+    super.onEventMainThread(event);
+    hideProgressDialog();
+    if (event instanceof Token) {
+        Token token = (Token) event;
+        mAccessToken = token.getAccess_token();
+        PreferenceUtils.setPrefString(RxApplication.getInstance(), 
+                PreferenceConstants.REFRESH_TOKEN, token.getRefresh_token());
+        Toast.makeText(LoginActivity.this, "登录成功！", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent().setClass(LoginActivity.this, MainActivity.class);
+        intent.putExtra("accessToken", mAccessToken);
+        startActivity(intent);
+    }
+    if (event instanceof FailedEvent) {
+        int type = ((FailedEvent) event).getType();
+        switch (type) {
+            case MessageType.LOGIN:
+                Toast.makeText(this, "登录失败！", Toast.LENGTH_SHORT).show();
+                break;
+        }
+    }
+}
+```
+
+
+
 ### 网络缓存机制
 
       private final static Interceptor REWRITE_CACHE_CONTROL_INTERCEPTOR = new Interceptor() {

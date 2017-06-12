@@ -47,9 +47,6 @@ public class RxJavaManager {
 
     public CompositeSubscription getCompositeSubscription(){
         CompositeSubscription c = getTail().getValue();
-        if(c.hasSubscriptions()){
-            c.clear();
-        }
         return c;
     }
 

@@ -93,13 +93,13 @@ protected void onPause() {
 
 
 
-#### Android Studio中ButterKnife插件的安装与使用
+### Android Studio中ButterKnife插件的安装与使用
 
 
 http://blog.csdn.net/cxc19890214/article/details/47430547
 
 
-### 推荐书籍
+## 推荐书籍
 
 Think in java
 
@@ -108,13 +108,13 @@ Effective java
 Clean code
 
 
-### 参考
+## 参考
 
 https://github.com/cheng2016/RxJava-Android-Samples
 
 https://github.com/cheng2016/RxJava
 
-### Contact Me
+## Contact Me
 
 - Github: github.com/cheng2016
 - Email: mitnick.cheng@outlook.com

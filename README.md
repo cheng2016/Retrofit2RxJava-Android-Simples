@@ -114,6 +114,38 @@ https://github.com/cheng2016/RxJava-Android-Samples
 
 https://github.com/cheng2016/RxJava
 
+[RxJava2的相关操作符，多个请求FlatMap案例](https://blog.csdn.net/dongxianfei/article/details/78541698)
+
+    api.register(new RegisterRequest())//发起注册请求
+                    .subscribeOn(Schedulers.io())//在IO线程进行网络请求
+                    .observeOn(AndroidSchedulers.mainThread())//回到主线程去处理请求注册结果
+                    .doOnNext(new Consumer<RegisterResponse>() {
+                        @Override
+                        public void accept(RegisterResponse registerResponse) throws Exception {
+                            //先根据注册的响应结果去做一些操作
+                        }
+                    })
+                    .observeOn(Schedulers.io())//回到IO线程去发起登录请求
+                    .flatMap(new Function<RegisterResponse, ObservableSource<LoginResponse>>() {
+                        @Override
+                        public ObservableSource<LoginResponse> apply(RegisterResponse registerResponse) throws Exception {
+                            return api.login(new LoginRequest());
+                        }
+                    })
+                    .observeOn(AndroidSchedulers.mainThread())//回到主线程去处理请求登录的结果
+                    .subscribe(new Consumer<LoginResponse>() {
+                        @Override
+                        public void accept(LoginResponse loginResponse) throws Exception {
+                            Toast.makeText(MainActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
+                        }
+                    }, new Consumer<Throwable>() {
+                        @Override
+                        public void accept(Throwable throwable) throws Exception {
+                            Toast.makeText(MainActivity.this, "登录失败", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+ 
+
 ## Contact Me
 
 - Github: github.com/cheng2016
